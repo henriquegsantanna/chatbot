@@ -1,11 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>Chat Virtual - Tela Inicial</title>
 </head>
 <body>
-    
+    <div class="container">
+    <img src="/static/chatbot.png" alt="Chatbot" class="avatar">
+    <br>
+    <a href="/templates/chat.html">
+        <button class="start-button">Iniciar Chat Virtual</button>
+    </a>
+  </div>
+<script src="{{ url_for('static', filename='script.js') }}" defer>
+    function iniciarChat() {
+        document.getElementById("inicio-container").style.display = "none";
+        document.getElementById("chat-container").style.display = "block";
+    }
+</script>
 </body>
 </html>
