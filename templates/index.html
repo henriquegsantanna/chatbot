@@ -4,21 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/static/style.css">
-  <title>Chat Virtual - Tela Inicial</title>
+  <title>Assistente Virtual</title>
 </head>
 <body>
-    <div class="container">
+  <div class="container" id="inicio-container">
     <img src="/static/chatbot.png" alt="Chatbot" class="avatar">
     <br>
-    <a href="/templates/chat.html">
-        <button class="start-button">Iniciar Chat Virtual</button>
-    </a>
+    <button class="start-button" onclick="iniciarChat()">Iniciar Chat Virtual</button>
   </div>
-<script src="{{ url_for('static', filename='script.js') }}" defer>
-    function iniciarChat() {
-        document.getElementById("inicio-container").style.display = "none";
-        document.getElementById("chat-container").style.display = "block";
-    }
-</script>
+
+  <div class="chat-container" id="chat-container" style="display: none;">
+    <div class="chat-header">
+      <img src="/static/chatbot.png" class="avatar-pequeno" alt="Bot">
+      <span>Assistente Virtual Green Fit</span>
+    </div>
+    <div class="bot-mensagem">Olá! Como posso ajudar?</div>
+    <div class="resposta-botoes">
+      <button onclick="responder('horarios')">Quais são os horários?</button>
+      <button onclick="responder('planos')">Quais são os planos?</button>
+      <button onclick="responder('localizacao')">Quais são as localizações?</button>
+    </div>
+  </div>
+  
+  <script src="/static/script.js"></script>
 </body>
 </html>

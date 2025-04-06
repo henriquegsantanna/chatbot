@@ -66,3 +66,55 @@ body {
 .response-buttons button:hover {
     background-color: #45a049;
 }
+
+.chat-container {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    max-width: 300px;
+    margin: auto;
+    display: none;
+}
+  
+.chat-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+  
+.avatar-pequeno {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+  
+.bot-mensagem {
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+  
+.resposta-botoes button {
+    margin: 5px 0;
+    padding: 10px;
+    width: 100%;
+    background-color: #56a1d2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+  
+.resposta-botoes button:hover {
+    background-color: #4b90c0;
+}
+  
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
