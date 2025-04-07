@@ -52,14 +52,6 @@ body {
     text-align: left;
 }
   
-.bot-message {
-    background-color: #eee;
-    padding: 12px 18px;
-    border-radius: 12px;
-    margin-bottom: 15px;
-    max-width: 300px;
-}
-  
 .response-buttons button {
     margin: 5px 10px 0 0;
     padding: 10px 20px;
@@ -99,40 +91,9 @@ body {
     object-fit: cover;
 }
   
-.bot-mensagem {
-    background-color: #f1f1f1;
-    padding: 10px;
-    border-radius: 10px;
-    margin-bottom: 15px;
-}
-  
-.resposta-botoes button {
-    margin: 5px 0;
-    padding: 10px;
-    width: 100%;
-    background-color: #74fb1f;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-  
-.resposta-botoes button:hover {
-    background-color: #74fb1f;
-}
-  
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
-}
-
-.chat-messages {
-    margin: 20px 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    animation: fadeIn 0.5s ease-in-out;
 }
   
 .bot-message, .user-message {
@@ -140,9 +101,27 @@ body {
     padding: 10px 15px;
     border-radius: 15px;
     max-width: 80%;
+    margin-bottom: 5px;
     align-self: flex-start;
 }
-  
+
+.chat-messages {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 5px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.bot-message {
+    background-color: #eee;
+    padding: 12px 18px;
+    border-radius: 12px;
+    margin-bottom: 5px;
+    max-width: 300px;
+}
+
 .user-message {
     background-color: #ccffcc;
     align-self: flex-end;
@@ -152,9 +131,4 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-}
-  
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
 }

@@ -12,7 +12,6 @@ function iniciarChat() {
     chat.style.animation = "fadeIn 0.5s ease forwards";
   }, 500);
 }
-
 function responder(opcao) {
   const mensagens = document.getElementById("chat-messages");
   const opcoes = document.getElementById("chat-options");
@@ -33,7 +32,7 @@ function responder(opcao) {
     // Adiciona resposta do bot
     const botMsg = document.createElement("div");
     botMsg.classList.add("bot-message");
-    botMsg.textContent = getRespostaBot(opcao);
+    botMsg.innerHTML = getRespostaBot(opcao); // Aqui pode usar HTML com tags <br>, <strong>, etc.
     mensagens.appendChild(botMsg);
 
     // Adiciona novos botões
@@ -42,6 +41,7 @@ function responder(opcao) {
     opcoes.style.opacity = 1;
   }, 500);
 }
+
 
 // Respostas e fluxos
 function getTextoUsuario(opcao) {
@@ -53,23 +53,7 @@ function getTextoUsuario(opcao) {
     case "leisnormas": return "Leis e Normas da academia";
     case "contato": return "Meios de contato";
     case "humano": return "Gostaria de falar com um atendente humano";
-    case "voltar": return "Voltar ao menu inicial";
-    default: return "Opção selecionada";
   }
-}
-
-function responder(opcao) {
-  const chatMessages = document.getElementById("chat-messages");
-
-  const userMessage = document.createElement("div");
-  userMessage.className = "user-message";
-  userMessage.textContent = event.target.textContent;
-  chatMessages.appendChild(userMessage);
-
-  const botMessage = document.createElement("div");
-  botMessage.className = "bot-message";
-  botMessage.innerHTML = getRespostaBot(opcao);
-  chatMessages.appendChild(botMessage);
 }
 
 function getRespostaBot(opcao) {  
@@ -136,42 +120,53 @@ function getRespostaBot(opcao) {
     "• <strong>Telefone Fixo:</strong> (11) 0000-0000<br>" +
     "• <strong>E-mail:</strong> atendimento@greenfit.com.br<br>" +
     "• <strong>Site:</strong> <a href='https://www.greenfit.com.br' target='_blank'>www.greenfit.com.br</a><br>" +
-    "• <strong>Instagram:</strong> <a href='https://www.instagram.com/greenfitoficial' target='_blank'>@greenfitoficial</a><br><br>";
+    "• <strong>Instagram:</strong> <a href='https://www.instagram.com/acadgreenfitofc' target='_blank'>@greenfitoficial</a><br><br>";
 
     case "humano": return "Função em processo...";
-    case "voltar": return "Olá! Como posso ajudar?";
-    default: return "Desculpe, não entendi. Pode repetir?";
   }
 }
 
 function getNovasOpcoes(opcao) {
   const botoes = [];
 
-  if (opcao === "voltar") {
-    return getNovasOpcoes("inicio");
-  }
-
-  if (opcao === "horarios" || opcao === "planos" || opcao === "localizacao") {
-    const voltarBtn = document.createElement("button");
-    voltarBtn.textContent = "Voltar ao menu inicial";
-    voltarBtn.onclick = () => responder("voltar");
-    botoes.push(voltarBtn);
-    return botoes;
+  if (opcao === "horarios" || opcao === "planos" || opcao === "localizacao" || opcao === "personal" || opcao === "leisnormas" || opcao === "contato" || opcao === "humano") {
+    // Adiciona mensagem do bot
+    const mensagens = document.getElementById("chat-messages");
+    const botMsg = document.createElement("div");
+    botMsg.classList.add("bot-message");
+    botMsg.textContent = "Posso te ajudar com algo mais?";
+    mensagens.appendChild(botMsg);
   }
 
   // Menu inicial
   const op1 = document.createElement("button");
-  op1.textContent = "Quais são os horários?";
+  op1.textContent = "Horários de funcionamento";
   op1.onclick = () => responder("horarios");
 
   const op2 = document.createElement("button");
-  op2.textContent = "Quais são os planos?";
+  op2.textContent = "Planos e Preços";
   op2.onclick = () => responder("planos");
 
   const op3 = document.createElement("button");
-  op3.textContent = "Onde fica a academia?";
+  op3.textContent = "Quais cidades possuem a academia Green Fit?";
   op3.onclick = () => responder("localizacao");
 
-  botoes.push(op1, op2, op3);
+  const op4 = document.createElement("button");
+  op4.textContent = "Personal Trainers";
+  op4.onclick = () => responder("personal");
+
+  const op5 = document.createElement("button");
+  op5.textContent = "Leis e Normas da academia";
+  op5.onclick = () => responder("leisnormas");
+
+  const op6 = document.createElement("button");
+  op6.textContent = "Meios de contato";
+  op6.onclick = () => responder("contato");
+
+  const op7 = document.createElement("button");
+  op7.textContent = "Gostaria de falar com um atendente humano";
+  op7.onclick = () => responder("humano");
+
+  botoes.push(op1, op2, op3, op4, op5, op6, op7);
   return botoes
 }
