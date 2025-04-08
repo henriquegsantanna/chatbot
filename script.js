@@ -32,9 +32,116 @@ function responder(opcao) {
     botMsg.innerHTML = getRespostaBot(opcao);
     mensagens.appendChild(botMsg);
 
-    const novosBotoes = getNovasOpcoes(opcao);
-    novosBotoes.forEach(btn => opcoes.appendChild(btn));
-    opcoes.style.opacity = 1;
+    if (opcao === "planos") {
+      const interesseMsg = document.createElement("div");
+      interesseMsg.classList.add("bot-message");
+      interesseMsg.textContent = "Você tem interesse em assinar um plano conosco?";
+      mensagens.appendChild(interesseMsg);
+
+      const simBtn = document.createElement("button");
+      simBtn.textContent = "Sim, tenho interesse!";
+      simBtn.onclick = () => {
+        adicionarMensagemUsuario("Sim, tenho interesse");
+      
+        const msg = document.createElement("div");
+        msg.classList.add("bot-message");
+        msg.textContent = "Qual plano você tem interesse?";
+        mensagens.appendChild(msg);
+      
+        opcoes.innerHTML = "";
+      
+        const planos = [
+          { texto: "Plano Mensal", valor: "mensal" },
+          { texto: "Plano Trimestral", valor: "trimestral" },
+          { texto: "Plano Anual", valor: "anual" }
+        ];
+      
+        planos.forEach(plano => {
+          const botaoPlano = document.createElement("button");
+          botaoPlano.textContent = plano.texto;
+          botaoPlano.onclick = () => {
+            adicionarMensagemUsuario(plano.texto);
+            const finalMsg = document.createElement("div");
+            finalMsg.classList.add("bot-message");
+            finalMsg.textContent = `Seja bem-vindo a Green Fit! Aproveite o seu ${plano.texto}!`;
+            mensagens.appendChild(finalMsg);
+            adicionarOpcoesEncerramento();
+          };
+          opcoes.appendChild(botaoPlano);
+        });
+      
+        opcoes.style.opacity = 1;
+      };
+
+      const naoBtn = document.createElement("button");
+      naoBtn.textContent = "Não tenho interesse";
+      naoBtn.onclick = () => {
+        adicionarMensagemUsuario("Não tenho interesse");
+        adicionarOpcoesEncerramento();
+      };
+
+      opcoes.appendChild(simBtn);
+      opcoes.appendChild(naoBtn);
+      opcoes.style.opacity = 1;
+    } else if (opcao === "personal") {
+      const interesseMsg = document.createElement("div");
+      interesseMsg.classList.add("bot-message");
+      interesseMsg.textContent = "Você tem interesse em fazer aulas com algum de nossos Personal Trainers?";
+      mensagens.appendChild(interesseMsg);
+    
+      opcoes.innerHTML = "";
+    
+      const simBtn = document.createElement("button");
+      simBtn.textContent = "Sim, tenho interesse!";
+      simBtn.onclick = () => {
+        adicionarMensagemUsuario("Sim, tenho interesse!");
+    
+        const msg = document.createElement("div");
+        msg.classList.add("bot-message");
+        msg.textContent = "Qual Personal você tem interesse em fazer aulas?";
+        mensagens.appendChild(msg);
+    
+        opcoes.innerHTML = "";
+    
+        const personaltrainers = [
+          { texto: "João Silva", valor: "joao" },
+          { texto: "Carla Mendes", valor: "carla" },
+          { texto: "Fernanda Lima", valor: "fernanda" }
+        ];
+    
+        personaltrainers.forEach(personal => {
+          const botaoPersonal = document.createElement("button");
+          botaoPersonal.textContent = personal.texto;
+          botaoPersonal.onclick = () => {
+            adicionarMensagemUsuario(personal.texto);
+            const finalMsg = document.createElement("div");
+            finalMsg.classList.add("bot-message");
+            finalMsg.textContent = `Ok! Em breve entraremos em contato com mais informações sobre as aulas com ${personal.texto}.`;
+            mensagens.appendChild(finalMsg);
+            adicionarOpcoesEncerramento();
+          };
+          opcoes.appendChild(botaoPersonal);
+        });
+    
+        opcoes.style.opacity = 1;
+      };
+    
+      const naoBtn = document.createElement("button");
+      naoBtn.textContent = "Não tenho interesse";
+      naoBtn.onclick = () => {
+        adicionarMensagemUsuario("Não tenho interesse");
+        adicionarOpcoesEncerramento();
+      };
+    
+      // ✅ Aqui adicionamos os botões ao container
+      opcoes.appendChild(simBtn);
+      opcoes.appendChild(naoBtn);
+      opcoes.style.opacity = 1;
+    } else {
+      const novosBotoes = getNovasOpcoes(opcao);
+      novosBotoes.forEach(btn => opcoes.appendChild(btn));
+      opcoes.style.opacity = 1;
+    }
   }, 500);
 }
 
@@ -127,7 +234,7 @@ function encerrarConversa() {
 
   const despedida = document.createElement("div");
   despedida.classList.add("bot-message");
-  despedida.textContent = "Foi um prazer te ajudar, até logo.";
+  despedida.textContent = "Foi um prazer te ajudar, até logo!";
   mensagens.appendChild(despedida);
 
   setTimeout(() => {
@@ -142,7 +249,7 @@ function encerrarConversa() {
       const btn = document.createElement("button");
       btn.textContent = "⭐".repeat(nota);
       btn.onclick = () => {
-        adicionarMensagemUsuario("Avaliação: " + "⭐".repeat(nota));
+        adicionarMensagemUsuario("⭐".repeat(nota));
         mostrarAgradecimento();
       };
       opcoes.appendChild(btn);
@@ -157,6 +264,34 @@ function mostrarAgradecimento() {
 
   const obrigado = document.createElement("div");
   obrigado.classList.add("bot-message");
-  obrigado.textContent = "Obrigado pelo feedback! 💚";
+  obrigado.textContent = "A Green Fit agradece o seu feedback!";
   mensagens.appendChild(obrigado);
+}
+
+function adicionarOpcoesEncerramento() {
+  const mensagens = document.getElementById("chat-messages");
+  const opcoes = document.getElementById("chat-options");
+  opcoes.innerHTML = "";
+
+  const botMsg = document.createElement("div");
+  botMsg.classList.add("bot-message");
+  botMsg.textContent = "Posso te ajudar com algo mais?";
+  mensagens.appendChild(botMsg);
+
+  const simBtn = document.createElement("button");
+  simBtn.textContent = "Sim, quero voltar ao menu";
+  simBtn.onclick = () => {
+    adicionarMensagemUsuario("Sim, quero voltar ao menu");
+    mostrarMenuInicial();
+  };
+
+  const naoBtn = document.createElement("button");
+  naoBtn.textContent = "Não, muito obrigado";
+  naoBtn.onclick = () => {
+    adicionarMensagemUsuario("Não, muito obrigado");
+    encerrarConversa();
+  };
+
+  opcoes.appendChild(simBtn);
+  opcoes.appendChild(naoBtn);
 }
