@@ -1,3 +1,4 @@
+//função para dar inicio ao chat virtual (com efeito)
 function iniciarChat() {
   const inicio = document.getElementById("inicio-container");
   const chat = document.getElementById("chat-container");
@@ -13,6 +14,7 @@ function iniciarChat() {
   }, 500);
 }
 
+//função para exibir o fluxo de pergunta e resposta
 function responder(opcao) {
   const mensagens = document.getElementById("chat-messages");
   const opcoes = document.getElementById("chat-options");
@@ -32,6 +34,7 @@ function responder(opcao) {
     botMsg.innerHTML = getRespostaBot(opcao);
     mensagens.appendChild(botMsg);
 
+    //caso especial com outro fluxo de pergunta e resposta
     if (opcao === "planos") {
       const interesseMsg = document.createElement("div");
       interesseMsg.classList.add("bot-message");
@@ -55,7 +58,8 @@ function responder(opcao) {
           { texto: "Plano Trimestral", valor: "trimestral" },
           { texto: "Plano Anual", valor: "anual" }
         ];
-      
+
+        //exibe mensagem de bem-vindo ao selecionar um plano
         planos.forEach(plano => {
           const botaoPlano = document.createElement("button");
           botaoPlano.textContent = plano.texto;
@@ -73,6 +77,7 @@ function responder(opcao) {
         opcoes.style.opacity = 1;
       };
 
+      //encerra o caso especial e aciona a opção de menu novamente
       const naoBtn = document.createElement("button");
       naoBtn.textContent = "Não tenho interesse";
       naoBtn.onclick = () => {
@@ -83,6 +88,8 @@ function responder(opcao) {
       opcoes.appendChild(simBtn);
       opcoes.appendChild(naoBtn);
       opcoes.style.opacity = 1;
+
+      //outro caso especial com outro fluxo de pergunta e resposta
     } else if (opcao === "personal") {
       const interesseMsg = document.createElement("div");
       interesseMsg.classList.add("bot-message");
@@ -95,7 +102,8 @@ function responder(opcao) {
       simBtn.textContent = "Sim, tenho interesse!";
       simBtn.onclick = () => {
         adicionarMensagemUsuario("Sim, tenho interesse!");
-    
+
+        //inicia o outro fluxo e exibe as opções de escolha
         const msg = document.createElement("div");
         msg.classList.add("bot-message");
         msg.textContent = "Qual Personal você tem interesse em fazer aulas?";
@@ -125,18 +133,21 @@ function responder(opcao) {
     
         opcoes.style.opacity = 1;
       };
-    
+
+      //encerra o caso especial e aciona a opção de menu novamente
       const naoBtn = document.createElement("button");
       naoBtn.textContent = "Não tenho interesse";
       naoBtn.onclick = () => {
         adicionarMensagemUsuario("Não tenho interesse");
         adicionarOpcoesEncerramento();
       };
-    
-      // ✅ Aqui adicionamos os botões ao container
+
+      //opções para os casos especiais (sim ou nao tenho interesse)
       opcoes.appendChild(simBtn);
       opcoes.appendChild(naoBtn);
       opcoes.style.opacity = 1;
+
+    //opções para casos não especiais (voltar ao menu ou não)
     } else {
       const novosBotoes = getNovasOpcoes(opcao);
       novosBotoes.forEach(btn => opcoes.appendChild(btn));
@@ -145,6 +156,7 @@ function responder(opcao) {
   }, 500);
 }
 
+//função para retornar como mensagem a opção que o usuário selecionou
 function getTextoUsuario(opcao) {
   switch (opcao) {
     case "horarios": return "Horários de funcionamento";
@@ -157,6 +169,7 @@ function getTextoUsuario(opcao) {
   }
 }
 
+//função para exibir a resposta do bot como mensagem de acordo com a opção escolhida pelo usuário
 function getRespostaBot(opcao) {
   switch (opcao) {
     case "horarios": return "<strong>Segunda a Sexta:</strong> 6h às 22h<br><strong>Sábados:</strong> 8h às 16h<br><strong>Feriados:</strong> 8h às 14h";
@@ -169,6 +182,7 @@ function getRespostaBot(opcao) {
   }
 }
 
+//função para exibir resposta final do bot, se deseja algo mais ou não (caso não, aciona a função de agradecimento e avaliação)
 function getNovasOpcoes(opcao) {
   const mensagens = document.getElementById("chat-messages");
   const opcoes = [];
@@ -197,6 +211,7 @@ function getNovasOpcoes(opcao) {
   return opcoes;
 }
 
+//função para exibir a resposta do usuário no chat (cria uma div)
 function adicionarMensagemUsuario(texto) {
   const mensagens = document.getElementById("chat-messages");
   const userMsg = document.createElement("div");
@@ -205,6 +220,7 @@ function adicionarMensagemUsuario(texto) {
   mensagens.appendChild(userMsg);
 }
 
+//função para exibir os botões do menu inicial
 function mostrarMenuInicial() {
   const opcoes = document.getElementById("chat-options");
   opcoes.innerHTML = "";
@@ -227,47 +243,7 @@ function mostrarMenuInicial() {
   });
 }
 
-function encerrarConversa() {
-  const mensagens = document.getElementById("chat-messages");
-  const opcoes = document.getElementById("chat-options");
-  opcoes.innerHTML = "";
-
-  const despedida = document.createElement("div");
-  despedida.classList.add("bot-message");
-  despedida.textContent = "Foi um prazer te ajudar, até logo!";
-  mensagens.appendChild(despedida);
-
-  setTimeout(() => {
-    const avaliacao = document.createElement("div");
-    avaliacao.classList.add("bot-message");
-    avaliacao.textContent = "Como foi nosso atendimento virtual?";
-    mensagens.appendChild(avaliacao);
-
-    // Adiciona os botões de avaliação com estilo igual ao menu
-    const estrelas = [1, 2, 3, 4, 5];
-    estrelas.forEach(nota => {
-      const btn = document.createElement("button");
-      btn.textContent = "⭐".repeat(nota);
-      btn.onclick = () => {
-        adicionarMensagemUsuario("⭐".repeat(nota));
-        mostrarAgradecimento();
-      };
-      opcoes.appendChild(btn);
-    });
-  }, 500);
-}
-
-function mostrarAgradecimento() {
-  const mensagens = document.getElementById("chat-messages");
-  const opcoes = document.getElementById("chat-options");
-  opcoes.innerHTML = "";
-
-  const obrigado = document.createElement("div");
-  obrigado.classList.add("bot-message");
-  obrigado.textContent = "A Green Fit agradece o seu feedback!";
-  mensagens.appendChild(obrigado);
-}
-
+//função antes de encerrar a conversa (se deseja ou não ir ao menu inicial)
 function adicionarOpcoesEncerramento() {
   const mensagens = document.getElementById("chat-messages");
   const opcoes = document.getElementById("chat-options");
@@ -294,4 +270,46 @@ function adicionarOpcoesEncerramento() {
 
   opcoes.appendChild(simBtn);
   opcoes.appendChild(naoBtn);
+}
+
+//função para agradecer e solicitar avaliação antes de encerrar o chat
+function encerrarConversa() {
+  const mensagens = document.getElementById("chat-messages");
+  const opcoes = document.getElementById("chat-options");
+  opcoes.innerHTML = "";
+
+  const despedida = document.createElement("div");
+  despedida.classList.add("bot-message");
+  despedida.textContent = "Foi um prazer te ajudar, até logo!";
+  mensagens.appendChild(despedida);
+
+  setTimeout(() => {
+    const avaliacao = document.createElement("div");
+    avaliacao.classList.add("bot-message");
+    avaliacao.textContent = "Como foi nosso atendimento virtual?";
+    mensagens.appendChild(avaliacao);
+
+    const estrelas = [1, 2, 3, 4, 5];
+    estrelas.forEach(nota => {
+      const btn = document.createElement("button");
+      btn.textContent = "⭐".repeat(nota);
+      btn.onclick = () => {
+        adicionarMensagemUsuario("⭐".repeat(nota));
+        mostrarAgradecimento();
+      };
+      opcoes.appendChild(btn);
+    });
+  }, 500);
+}
+
+//função para agradecer o feedback
+function mostrarAgradecimento() {
+  const mensagens = document.getElementById("chat-messages");
+  const opcoes = document.getElementById("chat-options");
+  opcoes.innerHTML = "";
+
+  const obrigado = document.createElement("div");
+  obrigado.classList.add("bot-message");
+  obrigado.textContent = "A Green Fit agradece o seu feedback!";
+  mensagens.appendChild(obrigado);
 }
