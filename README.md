@@ -32,6 +32,26 @@ git clone https://github.com/henriquegsantanna/chatbot.git
 cd chatbot
 ```
 
+## ⚙️ Resumo
+
+- Tela inicial para dar início a conversa.
+![screenshot](imagens/chatbot1.png)
+
+- Bot pergunta como pode ajudar e exibe, como botão, todas as opções do menu para o usuário selecionar.
+![screenshot](imagens/chatbot2.png)
+
+- Usuário seleciona a opção, o bot responde e pergunta se pode ajudar em algo mais.
+![screenshot](imagens/chatbot3.png)
+
+- Caso o usuário selecione que deseja voltar ao menu, novamente será exibido o menu com as opções.
+![screenshot](imagens/chatbot4.png)
+
+- Caso o usuário selecione a opção "Não, muito obrigado", o bot agradece e solicita ao usuário uma avaliação para o atendimento (1 a 5 estrelas).
+![screenshot](imagens/chatbot5.png)
+
+- Após o usuário avaliar, o bot agradece o feedback e a conversa é encerrada.
+![screenshot](imagens/chatbot6.png)
+
 ## 📫 Contato
 
 - [GitHub](https://github.com/henriquegsantanna)
