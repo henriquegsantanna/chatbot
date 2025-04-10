@@ -30,6 +30,7 @@ git clone https://github.com/henriquegsantanna/chatbot.git
 
 # Entre no diretório
 cd chatbot
+```
 
 ## 📫 Contato
 
