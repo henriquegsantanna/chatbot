@@ -178,7 +178,7 @@ function getRespostaBot(opcao) {
     case "personal": return "<strong>João Silva</strong><br>• Foco: Hipertrofia<br>• Atendimento: 7h às 12h<br>• R$50 por sessão ou R$400/mês<br><br><strong>Carla Mendes</strong><br>• Foco: Emagrecimento<br>• Atendimento: 13h às 17h<br>• R$60 por sessão ou R$450/mês<br><br><strong>Fernanda Lima</strong><br>• Foco: Funcional<br>• Atendimento: 18h às 22h<br>• R$70 por sessão ou R$500/mês";
     case "leisnormas": return "<strong>Leis e Normas:</strong><br><br>• Uso obrigatório de toalha<br>• Roupas adequadas e tênis<br>• Limpeza dos aparelhos após uso<br>• Evitar celular e barulhos excessivos<br>• Proibido menores sem autorização<br>• Proibido álcool e drogas<br><br>Mantenha o ambiente saudável!";
     case "contato": return "<strong>Contatos:</strong><br><br>• WhatsApp: (11) 99999-9999<br>• Tel: (11) 0000-0000<br>• Email: atendimento@greenfit.com.br<br>• Site: <a href='https://www.greenfit.com.br' target='_blank'>greenfit.com.br</a><br>• Instagram: <a href='https://www.instagram.com/acadgreenfitofc' target='_blank'>@greenfitoficial</a>";
-    case "humano": return "Função em processo...";
+    case "humano": return "Função em desenvolvimento...";
   }
 }
 
