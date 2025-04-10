@@ -35,5 +35,5 @@ cd chatbot
 ## 📫 Contato
 
 - [GitHub](https://github.com/henriquegsantanna)
-- [E-mail]henriquegsantanna@gmail.com
-- [LinkedIn]www.linkedin.com/in/henrique-gaiardoni-140b18314
+- [E-mail](henriquegsantanna@gmail.com)
+- [LinkedIn](www.linkedin.com/in/henrique-gaiardoni-140b18314)
