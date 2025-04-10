@@ -34,6 +34,6 @@ cd chatbot
 
 ## 📫 Contato
 
-Henrique Gaiardoni Sant'Anna - [GitHub](https://github.com/henriquegsantanna)
-E-mail - henriquegsantanna@gmail.com
-LinkedIn - www.linkedin.com/in/henrique-gaiardoni-140b18314
+- [GitHub](https://github.com/henriquegsantanna)
+- [E-mail]henriquegsantanna@gmail.com
+- [LinkedIn]www.linkedin.com/in/henrique-gaiardoni-140b18314
